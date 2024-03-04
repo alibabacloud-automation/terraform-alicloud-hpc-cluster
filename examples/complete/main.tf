@@ -1,5 +1,5 @@
 provider "alicloud" {
-  region = "cn-hangzhou"
+  region = "cn-shanghai"
 }
 
 data "alicloud_instance_types" "default" {
@@ -7,7 +7,7 @@ data "alicloud_instance_types" "default" {
 }
 
 data "alicloud_images" "default" {
-  name_regex = "^centos"
+  name_regex    = "^centos"
   instance_type = data.alicloud_instance_types.default.ids.0
 }
 
@@ -34,9 +34,9 @@ module "example" {
   source = "../.."
 
   #alicloud_ecs_hpc_cluster
-  create_cluster             = true
-  cluster_name               = var.cluster_name
-  cluster_description        = var.cluster_description
+  create_cluster      = true
+  cluster_name        = var.cluster_name
+  cluster_description = var.cluster_description
   #alicloud_instance
   create_instance            = true
   availability_zone          = local.availability_zones[0]
@@ -44,15 +44,15 @@ module "example" {
   security_group_ids         = [alicloud_security_group.default.id]
   vswitch_id                 = module.vpc.this_vswitch_ids[0]
   instance_type              = data.alicloud_instance_types.default.instance_types.0.id
-  system_disk_category       = "cloud_efficiency"
+  system_disk_category       = "cloud_essd"
   system_disk_name           = var.system_disk_name
   system_disk_description    = var.system_disk_description
   image_id                   = data.alicloud_images.default.images.0.id
   internet_max_bandwidth_out = var.internet_max_bandwidth_out
-  data_disks  = {
+  data_disks = {
     name        = "data_disks_name"
     size        = 1200
-    category    = "cloud_efficiency"
+    category    = "cloud_essd"
     description = "tf-test-description"
     encrypted   = true
   }
