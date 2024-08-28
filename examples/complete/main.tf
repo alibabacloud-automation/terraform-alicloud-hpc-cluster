@@ -7,7 +7,7 @@ data "alicloud_instance_types" "default" {
 }
 
 data "alicloud_images" "default" {
-  name_regex    = "^centos"
+  most_recent   = true
   instance_type = data.alicloud_instance_types.default.ids.0
 }
 
