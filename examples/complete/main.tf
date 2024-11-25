@@ -1,5 +1,5 @@
 provider "alicloud" {
-  region = "cn-shanghai"
+  region = "cn-hangzhou"
 }
 
 data "alicloud_instance_types" "default" {
@@ -8,7 +8,7 @@ data "alicloud_instance_types" "default" {
 
 data "alicloud_images" "default" {
   most_recent   = true
-  instance_type = data.alicloud_instance_types.default.ids.0
+  instance_type = data.alicloud_instance_types.default.ids[0]
 }
 
 locals {
@@ -21,7 +21,9 @@ resource "alicloud_security_group" "default" {
 }
 
 module "vpc" {
-  source             = "alibaba/vpc/alicloud"
+  source  = "alibaba/vpc/alicloud"
+  version = "~>1.11.0"
+
   create             = true
   vpc_name           = "tf-hpc-test"
   vpc_cidr           = "172.16.0.0/16"
@@ -43,11 +45,11 @@ module "example" {
   instance_name              = var.instance_name
   security_group_ids         = [alicloud_security_group.default.id]
   vswitch_id                 = module.vpc.this_vswitch_ids[0]
-  instance_type              = data.alicloud_instance_types.default.instance_types.0.id
+  instance_type              = data.alicloud_instance_types.default.instance_types[0].id
   system_disk_category       = "cloud_essd"
   system_disk_name           = var.system_disk_name
   system_disk_description    = var.system_disk_description
-  image_id                   = data.alicloud_images.default.images.0.id
+  image_id                   = data.alicloud_images.default.images[0].id
   internet_max_bandwidth_out = var.internet_max_bandwidth_out
   data_disks = {
     name        = "data_disks_name"
