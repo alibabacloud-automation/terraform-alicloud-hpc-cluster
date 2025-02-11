@@ -3,7 +3,7 @@ provider "alicloud" {
 }
 
 data "alicloud_instance_types" "default" {
-  instance_type_family = "ecs.sccg7"
+  instance_type_family = "ecs.sccc7"
 }
 
 data "alicloud_images" "default" {
@@ -16,8 +16,8 @@ locals {
 }
 
 resource "alicloud_security_group" "default" {
-  name   = "tf-hpc-test"
-  vpc_id = module.vpc.this_vpc_id
+  security_group_name = "tf-hpc-test"
+  vpc_id              = module.vpc.this_vpc_id
 }
 
 module "vpc" {
