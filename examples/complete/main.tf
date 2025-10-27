@@ -1,5 +1,5 @@
 provider "alicloud" {
-  region = "cn-hangzhou"
+  region = "cn-shanghai"
 }
 
 data "alicloud_instance_types" "default" {
