@@ -22,7 +22,7 @@ resource "alicloud_security_group" "default" {
 
 module "vpc" {
   source  = "alibaba/vpc/alicloud"
-  version = "~>1.11.0"
+  version = "2.0.0"
 
   create             = true
   vpc_name           = "tf-hpc-test"
