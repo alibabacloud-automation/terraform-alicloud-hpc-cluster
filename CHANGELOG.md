@@ -1,3 +1,14 @@
+## [2.0.0](https://github.com/alibabacloud-automation/terraform-alicloud-hpc-cluster/compare/v1.1.1...v2.0.0) (2026-04-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* add provider version constraint for aliyun/alicloud
+
+### Features
+
+* add provider version constraint for aliyun/alicloud ([2d42c86](https://github.com/alibabacloud-automation/terraform-alicloud-hpc-cluster/commit/2d42c8651b87f4d68f6bd72ae465d99dfa136e19))
+
 ## [1.1.1](https://github.com/alibabacloud-automation/terraform-alicloud-hpc-cluster/compare/v1.1.0...v1.1.1) (2025-12-02)
 
 
